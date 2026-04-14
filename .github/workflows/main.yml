@@ -1,0 +1,35 @@
+name: Daily News Factory
+
+on:
+  schedule:
+    # 매일 아침 JST(KST) 07:00 실행 (UTC 기준 22:00)
+    - cron: '0 22 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 저장소 체크아웃
+        uses: actions/checkout@v3
+
+      - name: Python 3.10 세팅
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: 자동화 봇 스크립트 실행 (RSS 수집 & 번역 & Markdown 추출)
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          python news_bot.py
+
+      - name: 생성된 컨텐츠 Github Repository에 자동 커밋 및 푸쉬
+        run: |
+          git config --global user.name 'GSF Factory Bot'
+          git config --global user.email 'bot@gsf-factory.com'
+          git add src/data/blog/
+          # 변경사항이 있을 때만 커밋
+          git diff --quiet && git diff --staged --quiet || git commit -m "🤖 Auto-generated news wrap-up"
+          git push
