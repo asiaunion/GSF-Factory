@@ -1,0 +1,6 @@
+---
+import { getCollection } from "astro:content";
+const posts = await getCollection("blog");
+const koPosts = posts.filter(p => p.id.startsWith("ko/"));
+---
+<html lang="en"><body><pre>{JSON.stringify(koPosts, null, 2)}</pre></body></html>

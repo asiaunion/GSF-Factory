@@ -1,0 +1,60 @@
+---
+const { pathname } = Astro.url;
+const { locale } = Astro.params;
+
+const currentLang = locale || "en";
+
+// Function to generate the correct URL for a different language
+const getLangUrl = (targetLang: string) => {
+  let relativePath = pathname;
+  
+  // Strip out current locale prefix if we are in a sub-locale
+  if (locale && pathname.startsWith(`/${locale}`)) {
+    relativePath = pathname.replace(`/${locale}`, "");
+  }
+  
+  // Ensure we don't have double slashes for empty paths
+  relativePath = relativePath || "/";
+  if (!relativePath.startsWith("/")) relativePath = `/${relativePath}`;
+
+  // If targeting english, we just use the relative path without prefix
+  if (targetLang === "en") {
+    return relativePath;
+  }
+  
+  // For other languages, prepend the locale
+  return `/${targetLang}${relativePath === "/" ? "" : relativePath}`;
+};
+---
+
+<div class="relative inline-block text-left group ml-2 sm:ml-4">
+  <button
+    type="button"
+    class="flex items-center space-x-1 focus-outline rounded-md px-2 py-1 hover:text-accent font-medium uppercase transition-colors"
+    id="lang-menu-button"
+    aria-expanded="false"
+    aria-haspopup="true"
+  >
+    <span>
+      {currentLang === 'en' ? '🇺🇸' : currentLang === 'ko' ? '🇰🇷' : '🇯🇵'}
+    </span>
+    <span class="text-sm">{currentLang.toUpperCase()}</span>
+    <svg class="h-4 w-4 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+    </svg>
+  </button>
+
+  <div
+    class="absolute right-0 mt-2 w-24 origin-top-right rounded-md bg-background shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden group-hover:block z-50 border border-border"
+    role="menu"
+    aria-orientation="vertical"
+    aria-labelledby="lang-menu-button"
+    tabindex="-1"
+  >
+    <div class="py-1" role="none">
+      <a href={getLangUrl('en')} class:list={["block px-4 py-2 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800", currentLang === 'en' ? 'font-bold text-accent' : '']} role="menuitem">🇺🇸 EN</a>
+      <a href={getLangUrl('ko')} class:list={["block px-4 py-2 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800", currentLang === 'ko' ? 'font-bold text-accent' : '']} role="menuitem">🇰🇷 KO</a>
+      <a href={getLangUrl('ja')} class:list={["block px-4 py-2 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800", currentLang === 'ja' ? 'font-bold text-accent' : '']} role="menuitem">🇯🇵 JA</a>
+    </div>
+  </div>
+</div>

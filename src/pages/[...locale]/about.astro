@@ -1,0 +1,18 @@
+---
+import AboutLayout from "@/layouts/AboutLayout.astro";
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: undefined } },
+    { params: { locale: "ko" } },
+    { params: { locale: "ja" } },
+  ];
+}
+---
+
+<AboutLayout frontmatter={{ title: "About" }}>
+  <div>
+    <h2>About GSF-Blog</h2>
+    <p>Good Samaritan Frontier: Investing, Lifestyle, and Missional Business.</p>
+  </div>
+</AboutLayout>
