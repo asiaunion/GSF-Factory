@@ -56,6 +56,21 @@ def generate_markdown_file(news_data):
     os.makedirs(output_dir, exist_ok=True)
     
     # 3개 국어별 저장 포맷 (Astro 다국어 템플릿 호환)
+    lang_meta = {
+        "ko": {
+            "title": f"글로벌 금융 시황 업데이트 - {today_str}",
+            "description": "AI 무인 팩토리가 수집한 실시간 시황 뉴스입니다.",
+        },
+        "en": {
+            "title": f"Global Financial Market Updates - {today_str}",
+            "description": "Real-time market news collected by the AI unmanned factory.",
+        },
+        "ja": {
+            "title": f"グローバル金融市況アップデート - {today_str}",
+            "description": "AI無人ファクトリーが収集したリアルタイム市況ニュースです。",
+        },
+    }
+
     for lang in ["ko", "en", "ja"]:
         lang_dir = os.path.join(output_dir, lang)
         os.makedirs(lang_dir, exist_ok=True)
@@ -70,16 +85,20 @@ def generate_markdown_file(news_data):
             summary = translate_and_summarize(news, lang)
             body_content += f"### [{news['title']}]({news['link']})\n> {news['date']}\n\n{summary}\n\n---\n"
             
-        # Frontmatter
+        meta = lang_meta[lang]
+        now_iso = datetime.now().isoformat()
+
+        # Frontmatter (content.config.ts 스키마 호환)
         frontmatter = f"""---
-title: "Global Financial Market Updates - {today_str}"
-pubDatetime: {datetime.now().isoformat()}
-modDatetime: {datetime.now().isoformat()}
+title: "{meta['title']}"
+pubDatetime: {now_iso}
+modDatetime: {now_iso}
 author: GSF-Bot
 featured: false
 draft: false
 tags: ["news", "market", "japan"]
-description: "AI 무인 팩토리가 수집한 실시간 시황 뉴스입니다."
+description: "{meta['description']}"
+lang: "{lang}"
 ---
 
 {body_content}
