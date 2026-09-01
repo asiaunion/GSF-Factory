@@ -1,7 +1,7 @@
 ---
 title: "Global Financial Market Updates - 2026-09-01"
-pubDatetime: 2026-09-01T01:06:06.327447
-modDatetime: 2026-09-01T01:06:06.327447
+pubDatetime: 2026-09-01T23:52:48.388655
+modDatetime: 2026-09-01T23:52:48.388655
 author: GSF-Bot
 featured: false
 draft: false
@@ -10,19 +10,19 @@ description: "Real-time market news collected by the AI unmanned factory."
 lang: "en"
 ---
 
-### [米財務長官 日銀の利上げを示唆か](https://news.yahoo.co.jp/pickup/6593803?source=rss)
-> Mon, 31 Aug 2026 23:00:59 GMT
+### [フラット35 9月の適用金利3.46%](https://news.yahoo.co.jp/pickup/6593916?source=rss)
+> Tue, 01 Sep 2026 14:33:57 GMT
 
-[Summary] 米財務長官 日銀の利上げを示唆か - Latest financial pipeline analysis.
+[Summary] フラット35 9月の適用金利3.46% - Latest financial pipeline analysis.
 
 > **💡 GSF Expert Insight:**
 > This news is closely aligned with the recent liquidity flows in the global market. In particular, it hints at the Bank of Japan's interest rate policies and the potential influx of capital into indirect real estate assets like J-REITs. For conservative investors, interpreting this volatility as a buying opportunity could be highly advantageous.
 
 ---
-### [長期金利一時2.955% 30年ぶり水準](https://news.yahoo.co.jp/pickup/6593818?source=rss)
-> Tue, 01 Sep 2026 00:39:37 GMT
+### [残業一律抑制 9/1から取りやめ](https://news.yahoo.co.jp/pickup/6593850?source=rss)
+> Tue, 01 Sep 2026 06:07:42 GMT
 
-[Summary] 長期金利一時2.955% 30年ぶり水準 - Latest financial pipeline analysis.
+[Summary] 残業一律抑制 9/1から取りやめ - Latest financial pipeline analysis.
 
 > **💡 GSF Expert Insight:**
 > This news is closely aligned with the recent liquidity flows in the global market. In particular, it hints at the Bank of Japan's interest rate policies and the potential influx of capital into indirect real estate assets like J-REITs. For conservative investors, interpreting this volatility as a buying opportunity could be highly advantageous.
